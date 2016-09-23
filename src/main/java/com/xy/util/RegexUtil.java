@@ -108,8 +108,10 @@ public class RegexUtil {
                 "123456" +
                 "<object data=\"movie.mp4\" width=\"320\" height=\"240\">\n" +
                 "                 <embed src=\"movie.swf\" width=\"320\" height=\"240\" />\n" +
-                "             </object> <a>234</a>";
+                "             </object> " +
+                "<embed src=\"http://player.youku.com/player.php/Type/Folder/Fid/28212553/Ob/1/sid/XMTczNDI3NTY2OA==/v.swf\" quality=\"high\" width=\"480\" height=\"400\" align=\"middle\" allowScriptAccess=\"always\" allowFullScreen=\"true\" mode=\"transparent\" type=\"application/x-shockwave-flash\"></embed> ";
 
+        String ss = " <embed src=\"movie.swf\" width=\"320\" height=\"240\" /><embed src=\"http://player.youku.com/player.php/Type/Folder/Fid/28212553/Ob/1/sid/XMTczNDI3NTY2OA==/v.swf\" quality=\"high\" width=\"480\" height=\"400\" align=\"middle\" allowScriptAccess=\"always\" allowFullScreen=\"true\" mode=\"transparent\" type=\"application/x-shockwave-flash\"></embed> ";
         /**
          * 正则表达式：<(?<tag>[^\s>]+)[^>]*>(.|\n)*?</\k<tag>>
            说明：匹配成对的HTML标签，它将会匹配Html标签及标签中的内容，本例分三段匹配三个<table>标签及</table>中的内容。
@@ -129,9 +131,10 @@ public class RegexUtil {
         //匹配自闭合的html标签
         //Pattern pattern7 = Pattern.compile("<\\s*video\\s+([^>]*)\\s*>");
 
-        String s1 = Pattern.compile("<(?<tag>[video|embed|object|^\\s>]+)[^>]*>(.|\\n)*?</\\k<tag>>").matcher(video).replaceAll("[视频]");
+        String s1 = Pattern.compile("<\\s*(video|embed|object)\\s+([^>]*)\\s*/>").matcher(ss).replaceAll("[视频]");
         System.out.println("s1 : "+s1);
-        String s2 = Pattern.compile("<\\s*(video|embed|object)\\s+([^>]*)\\s*/>").matcher(s1).replaceAll("[视频]");
+        String s2 = Pattern.compile("<(?<tag>[video|embed|object|^\\s>]+)[^>]*>(.|\\n)*?</\\k<tag>>").matcher(s1).replaceAll("[视频]");
         System.out.println("s2 : "+s2);
+
     }
 }

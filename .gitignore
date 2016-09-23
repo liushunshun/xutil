@@ -1,0 +1,14 @@
+*/target/
+.idea/
+*.iml
+*.class
+target/
+log/
+*.log
+*.logs
+*.out
+*.txt
+logs/
+*-reduced-pom.xml
+rpc/edooon-search/edooon-search-init/dependency-reduced-pom.xml
+rpc/edooon-search/edooon-search-sql2es/dependency-reduced-pom.xml

@@ -133,7 +133,10 @@ public class RegexUtil {
 
         String s1 = Pattern.compile("<\\s*(video|embed|object)\\s+([^>]*)\\s*/>").matcher(ss).replaceAll("[视频]");
         System.out.println("s1 : "+s1);
+
+        //下面一行代码在过滤很长的文本时会报堆栈溢出
         String s2 = Pattern.compile("<(?<tag>[video|embed|object|^\\s>]+)[^>]*>(.|\\n)*?</\\k<tag>>").matcher(s1).replaceAll("[视频]");
+
         System.out.println("s2 : "+s2);
 
     }

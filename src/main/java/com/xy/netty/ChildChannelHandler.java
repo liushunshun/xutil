@@ -6,6 +6,8 @@ import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
+import java.nio.charset.Charset;
+
 /**
  * Created by Alex on 2016/10/10.
  */
@@ -29,10 +31,10 @@ public class ChildChannelHandler extends ChannelInitializer<SocketChannel>{
         // 基于最大长度
 //		e.pipeline().addLast(new FixedLengthFrameDecoder(4));
         // 解码转String
-        e.pipeline().addLast(new StringDecoder());
+        e.pipeline().addLast(new StringDecoder(Charset.forName("GBK")));
 
         // 编码器 String
-        e.pipeline().addLast(new StringEncoder());
+        e.pipeline().addLast(new StringEncoder(Charset.forName("GBK")));
 
         // 在管道中添加我们自己的接收数据实现方法
         e.pipeline().addLast(new MyServerHanlder());

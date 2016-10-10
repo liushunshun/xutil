@@ -8,6 +8,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
+ * http://www.itstack.org/?post=9
  * Created by Alex on 2016/10/10.
  */
 public class NettyServer {

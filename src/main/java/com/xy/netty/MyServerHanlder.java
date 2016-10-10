@@ -1,14 +1,14 @@
 package com.xy.netty;
 
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 
 import java.util.Date;
 
 /**
  * Created by Alex on 2016/10/10.
  */
-public class MyServerHanlder extends ChannelHandlerAdapter{
+public class MyServerHanlder extends ChannelInboundHandlerAdapter{
     /*
 	 * channelAction
 	 *
@@ -55,6 +55,7 @@ public class MyServerHanlder extends ChannelHandlerAdapter{
          * 但是这个数据在不进行解码时它是ByteBuf类型的后面例子我们在介绍
          *
          */
+    @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
             throws Exception {
 
@@ -77,6 +78,7 @@ public class MyServerHanlder extends ChannelHandlerAdapter{
 	 * ctx.flush()
 	 *
 	 */
+    @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         ctx.flush();
     }
@@ -90,6 +92,7 @@ public class MyServerHanlder extends ChannelHandlerAdapter{
 	 * 抓住异常，当发生异常的时候，可以做一些相应的处理，比如打印日志、关闭链接
 	 *
 	 */
+    @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
             throws Exception {
         ctx.close();

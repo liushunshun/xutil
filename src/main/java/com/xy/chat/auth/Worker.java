@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by XiuYang on 2016/10/13.
@@ -32,4 +33,42 @@ public class Worker extends Thread {
         return str.hashCode() % AuthStarter.workNum;
     }
 
+    @Override
+    public void run() {
+        while (!stop){
+            IMHandler handler = null;
+            try{
+                handler = tasks.poll(600, TimeUnit.MILLISECONDS);
+                if(handler==null){
+                    continue;
+                }
+            }catch (InterruptedException e) {
+                logger.error("Caught Exception");
+            }
+            try{
+                assert handler != null;
+                handler.jedis = AuthStarter.redisPoolManager.getJedis();
+                handler.excute(this);
+            } catch (Exception e) {
+                logger.error("Caught Exception");
+            } finally {
+                AuthStarter.redisPoolManager.releaseJedis(handler.jedis);
+                handler.jedis = null;
+            }
+        }
+    }
+
+    public static void  startWorker(int workNum) {
+        workers = new Worker[workNum];
+        for(int i = 0; i < workNum; i++) {
+            workers[i] = new Worker();
+            workers[i].start();
+        }
+    }
+
+    public static void stopWorkers() {
+        for(int i = 0; i < AuthStarter.workNum; i++) {
+            workers[i].stop = true;
+        }
+    }
 }

@@ -43,9 +43,11 @@ public class AuthServerHandler extends SimpleChannelInboundHandler<Message>{
 
         IMHandler handler;
         if(msg instanceof Internal.Greet){
-            //TODO
-            //handler =
+            handler = HandlerManager.getHandler(ptoNum,gt.getUserId(),gt.getNetId(),msg,channelHandlerContext);
+        }else{
+            handler = HandlerManager.getHandler(ptoNum,gt.getUserId(),gt.getNetId(),msg,getGateAuthConnection());
         }
+        Worker.dispath(gt.getUserId(),handler);
     }
 
     @Override

@@ -27,9 +27,9 @@ public class AuthServer {
                     @Override
                     protected void initChannel(SocketChannel channel) throws Exception {
                         ChannelPipeline pipeline = channel.pipeline();
-                        //pipeline.addLast("MessageDecoder",new PacketDecoder());
-                        //pipeline.addLast("MessageEncoder",new PacketEncoder());
-                        //pipeline.addLast("AuthServerHandler",new AuthServerHandler());
+                        pipeline.addLast("MessageDecoder",new PacketDecoder());
+                        pipeline.addLast("MessageEncoder",new PacketEncoder());
+                        pipeline.addLast("AuthServerHandler",new AuthServerHandler());
                     }
                 });
 
@@ -39,8 +39,8 @@ public class AuthServer {
             @Override
             public void operationComplete(ChannelFuture channelFuture) throws Exception {
                 if(channelFuture.isSuccess()){
-                    //ParseRegistryMap.initRegistry();
-                    //HandlerManager.initHandlers();
+                    ParseRegistryMap.initRegistry();
+                    HandlerManager.initHandlers();
                     logger.info("[AuthServer] Started Successed, waiting for other server connect...");
                 }else{
                     logger.error("[AuthServer] Started Failed");

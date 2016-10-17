@@ -6,6 +6,7 @@ import com.xy.util.DBOperator;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.thrift.TException;
 
 /**
  * Created by XiuYang on 2016/10/14.
@@ -19,8 +20,8 @@ public class CLoginHandler extends IMHandler{
 
     @Override
     protected void excute(Worker worker){
-        Auth.CLogin msg = (Auth.CLogin)msg;
-        Account account;
+        Auth.CLogin msg = (Auth.CLogin)_msg;
+        Account account = null;
 
         if(!jedis.exists(UserUtils.genDBKey(userId))) {
             RouteUtil.sendResponse(Common.ACCOUNT_INEXIST, "Account not exists", netId, userId);
@@ -28,7 +29,11 @@ public class CLoginHandler extends IMHandler{
             return;
         } else {
             byte[] userIdBytes = jedis.hget(UserUtils.genDBKey(userId), UserUtils.userFileds.Account.field);
-            account = DBOperator.Deserialize(new Account(), userIdBytes);
+            try {
+                account = DBOperator.Deserialize(new Account(), userIdBytes);
+            } catch (TException e) {
+                e.printStackTrace();
+            }
         }
 
         if(account.getUserid().equals(userId) && account.getPasswd().equals(msg.getPasswd())) {

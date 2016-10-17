@@ -56,5 +56,8 @@ public class AuthServerHandler extends SimpleChannelInboundHandler<Message>{
         // super.exceptionCaught(ctx, cause);
         logger.error("An Exception Caught");
     }
+    public static void putInUseridMap(String userid, Long netId) {
+        userid2netidMap.put(userid, netId);
+    }
 
 }

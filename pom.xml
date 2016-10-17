@@ -22,6 +22,7 @@
 
     <properties>
         <version.jedis>2.8.0</version.jedis>
+        <version.thrift>0.9.2</version.thrift>
     </properties>
 
     <dependencies>
@@ -106,6 +107,13 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>${version.jedis}</version>
+        </dependency>
+
+        <!-- thrift-->
+        <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>${version.thrift}</version>
         </dependency>
     </dependencies>
 </project>

@@ -9,6 +9,10 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContextBuilder;
+import org.apache.http.conn.ssl.TrustStrategy;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -17,10 +21,16 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.GeneralSecurityException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +44,7 @@ public class HttpUtil {
         if(httpClient==null){
             PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
             cm.setMaxTotal(200);
-            httpClient = HttpClients.custom().setConnectionManager(cm).build();
+            httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory()).setConnectionManager(cm).build();
         }
         return httpClient;
     }
@@ -61,7 +71,7 @@ public class HttpUtil {
         CloseableHttpResponse response = getHttpClient().execute(httpGet);
         try {
             if(response.getStatusLine().getStatusCode()== HttpStatus.SC_OK){
-                return EntityUtils.toString(response.getEntity());
+                return EntityUtils.toString(response.getEntity(),Consts.UTF_8);
             }
         } finally {
             response.close();
@@ -94,7 +104,7 @@ public class HttpUtil {
         CloseableHttpResponse response = getHttpClient().execute(httpPost);
         try {
             if(response.getStatusLine().getStatusCode()== HttpStatus.SC_OK){
-                return EntityUtils.toString(response.getEntity());
+                return EntityUtils.toString(response.getEntity(),Consts.UTF_8);
             }
         } finally {
             response.close();
@@ -125,7 +135,7 @@ public class HttpUtil {
         CloseableHttpResponse response = getHttpClient().execute(httpPost);
         try {
             if(response.getStatusLine().getStatusCode()== HttpStatus.SC_OK){
-                return EntityUtils.toString(response.getEntity());
+                return EntityUtils.toString(response.getEntity(),Consts.UTF_8);
             }
         } finally {
             response.close();
@@ -133,9 +143,54 @@ public class HttpUtil {
         return "";
     }
 
+    /**
+     * 创建SSL安全连接
+     *
+     * @return
+     */
+    private static SSLConnectionSocketFactory createSSLConnSocketFactory() {
+        SSLConnectionSocketFactory sslsf = null;
+        try {
+            SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
+
+                public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                    return true;
+                }
+            }).build();
+            sslsf = new SSLConnectionSocketFactory(sslContext, new X509HostnameVerifier() {
+
+                @Override
+                public boolean verify(String arg0, SSLSession arg1) {
+                    return true;
+                }
+
+                @Override
+                public void verify(String host, SSLSocket ssl) throws IOException {
+                }
+
+                @Override
+                public void verify(String host, X509Certificate cert) throws SSLException {
+                }
+
+                @Override
+                public void verify(String host, String[] cns, String[] subjectAlts) throws SSLException {
+                }
+            });
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
+        }
+        return sslsf;
+    }
+
     public static void main(String[] args) throws IOException {
-        Map<String,String> headers = new HashMap<String, String>();
+        /*Map<String,String> headers = new HashMap<String, String>();
         headers.put("app","1");
         System.out.println(postJson("http://115.182.220.22:8082/v3/user/login","{\"userType\":\"1\",\"name\":\"18610022931\",\"passwd\":\"53DD9C6005F3CDFC5A69C5C07388016D\"}",headers));
+ */
+        try {
+            System.out.println(doGet("https://www.baidu.com",null,null));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 }

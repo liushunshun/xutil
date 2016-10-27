@@ -42,6 +42,8 @@ public class MyConcurrent {
         }
         System.out.println(a);
         result.forEach((x,y)-> System.out.println(x+"-"+y));
+
+        executors.shutdown();
     }
 
     private static int twoDiceThrows(ThreadLocalRandom random) {

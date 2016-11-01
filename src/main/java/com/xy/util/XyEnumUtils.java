@@ -1,5 +1,6 @@
 package com.xy.util;
 
+import org.apache.commons.lang3.AnnotationUtils;
 import org.apache.commons.lang3.EnumUtils;
 
 import java.util.Map;
@@ -22,6 +23,6 @@ public class XyEnumUtils {
     enum Type{
         BEIJING,
         TIANJIN,
-        SHANGHAI
+        SHANGHAI;
     }
 }

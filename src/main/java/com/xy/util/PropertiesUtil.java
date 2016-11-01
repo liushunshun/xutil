@@ -55,7 +55,7 @@ public class PropertiesUtil {
         }
         return Collections.EMPTY_LIST;
     }
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         System.out.println(config.getString("username"));
         System.out.println(config.getInt("password"));
         config.getList("lovegames").forEach(System.out::println);
@@ -69,5 +69,5 @@ public class PropertiesUtil {
 
         System.out.println(get("username"));
         getList("lovegames").forEach(System.out::println);
-    }
+    }*/
 }

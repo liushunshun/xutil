@@ -38,6 +38,6 @@ public class ReadFile {
         }
     }
     public static void main(String[] args) throws IOException {
-        read("E:\\test.txt").forEach(System.out::println);
+        read("E:\\NlpAnalysisTest.txt").forEach(System.out::println);
     }
 }

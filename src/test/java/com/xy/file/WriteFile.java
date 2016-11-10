@@ -50,7 +50,7 @@ public class WriteFile {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         String s = "hello world hello world hello world hello world hello world hello world 这些事中文 \r\n";
-        String pathString = "E:\\test.txt";
+        String pathString = "E:\\NlpAnalysisTest.txt";
         try {
             writeString(pathString,s,DEFAULT_CHARSET,false);
         } catch (IOException e) {

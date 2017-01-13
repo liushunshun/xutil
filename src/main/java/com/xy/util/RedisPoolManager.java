@@ -2,6 +2,7 @@ package com.xy.util;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -62,7 +63,8 @@ public class RedisPoolManager {
      *
      * @param jedis
      */
-    public void returnJedis(Jedis jedis) {
+    @SuppressWarnings("deprecation")
+	public void returnJedis(Jedis jedis) {
         try {
 
             if (jedis != null) {
@@ -79,7 +81,8 @@ public class RedisPoolManager {
      *
      * @param jedis
      */
-    public void returnBrokenJedis(Jedis jedis) {
+    @SuppressWarnings("deprecation")
+	public void returnBrokenJedis(Jedis jedis) {
         try {
 
             if (jedis != null) {
@@ -96,7 +99,8 @@ public class RedisPoolManager {
      *
      * @param jedis
      */
-    public void releaseJedis(Jedis jedis) {
+    @SuppressWarnings("deprecation")
+	public void releaseJedis(Jedis jedis) {
         pool.returnResource(jedis);
 
     }

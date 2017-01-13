@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
 public class IOUtil {
 
     private static final int OUTPUT_BUFFER_SIZE = 4096;
-    private static final String DEFAULT_CHARSET = "UTF-8";
+    //private static final String DEFAULT_CHARSET = "UTF-8";
 
     /**
      * InputStream转String 完成之后关闭流

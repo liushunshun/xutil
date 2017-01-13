@@ -1,6 +1,5 @@
 package com.xy.util;
 
-import org.apache.commons.lang3.AnnotationUtils;
 import org.apache.commons.lang3.EnumUtils;
 
 import java.util.Map;
@@ -12,7 +11,7 @@ public class XyEnumUtils {
     public static void main(String[] args) {
         EnumUtils.getEnumList(Type.class).stream().forEach(System.out::println);
 
-        Type type = EnumUtils.getEnum(Type.class,"TIANJIN");
+ //       Type type = EnumUtils.getEnum(Type.class,"TIANJIN");
 
         Map<String,Type> map = EnumUtils.getEnumMap(Type.class);
         for(String key : map.keySet()){

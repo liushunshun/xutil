@@ -1,5 +1,19 @@
 package com.xy.util;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.GeneralSecurityException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
+
 import org.apache.http.Consts;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpStatus;
@@ -21,22 +35,10 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocket;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.security.GeneralSecurityException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Created by XiuYang on 2016/9/14.
  */
+@SuppressWarnings("deprecation")
 public class HttpUtil {
     private static CloseableHttpClient httpClient = null;
 
@@ -148,10 +150,10 @@ public class HttpUtil {
      *
      * @return
      */
-    private static SSLConnectionSocketFactory createSSLConnSocketFactory() {
+	private static SSLConnectionSocketFactory createSSLConnSocketFactory() {
         SSLConnectionSocketFactory sslsf = null;
         try {
-            SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
+			SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
 
                 public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
                     return true;

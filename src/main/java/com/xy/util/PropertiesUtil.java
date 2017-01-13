@@ -53,7 +53,7 @@ public class PropertiesUtil {
         if(config.containsKey(key)){
             return config.getList(String.class,key);
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
     /*public static void main(String[] args) {
         System.out.println(config.getString("username"));

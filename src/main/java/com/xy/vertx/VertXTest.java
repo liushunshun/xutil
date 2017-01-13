@@ -1,4 +1,4 @@
-package com.xy.vertx;
+/*package com.xy.vertx;
 
 import io.netty.handler.codec.sctp.SctpOutboundByteStreamHandler;
 import io.vertx.core.Vertx;
@@ -10,9 +10,9 @@ import io.vertx.core.file.OpenOptions;
 
 import java.io.UnsupportedEncodingException;
 
-/**
+*//**
  * Created by XiuYang on 2016/10/28.
- */
+ *//*
 public class VertXTest {
     public static void main(String[] args) {
         VertxOptions options = new VertxOptions().setWorkerPoolSize(40);
@@ -42,3 +42,4 @@ public class VertXTest {
         //vertx.close();
     }
 }
+*/

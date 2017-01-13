@@ -12,13 +12,13 @@ public class RegexUtil {
                 "This is the text to be searched " +
                         "for occurrences of the Http:// pattern.";
         //查找字符串
-        String pattern = ".*http://.*";
-        boolean metches = Pattern.matches(pattern,text);
+        //String pattern = ".*http://.*";
+        //boolean metches = Pattern.matches(pattern,text);
 
         //Matcher
-        Pattern pattern1 = Pattern.compile(pattern,Pattern.CASE_INSENSITIVE);//忽略大小写
-        Matcher matcher = pattern1.matcher(text);
-        boolean matches1 = matcher.matches();
+        //Pattern pattern1 = Pattern.compile(pattern,Pattern.CASE_INSENSITIVE);//忽略大小写
+        //Matcher matcher = pattern1.matcher(text);
+       // boolean matches1 = matcher.matches();
 
         //正则表达式作为分隔符分隔文本
         Pattern pattern2 = Pattern.compile("\\shttp://\\s",Pattern.CASE_INSENSITIVE);//忽略大小写
@@ -93,22 +93,22 @@ public class RegexUtil {
          </video>
          */
 
-        String video = "<video width=\"320\" height=\"240\" controls=\"controls\"><source src=\"movie.mp4\" type=\"video/mp4\" />\n" +
-                "  <source src=\"movie.ogg\" type=\"video/ogg\" />\n" +
-                "  <source src=\"movie.webm\" type=\"video/webm\" />\n" +
-                "Your browser does not support the video tag.\n" +
-                "</video> 123 <video width=\"320\" height=\"240\" controls=\"controls\"/> 456 " +
-                "" +
-                "<embed src=\"http://player.youku.com/player.php/Type/Folder/Fid/28212553/Ob/1/sid/XMTczNDI3NTY2OA==/v.swf\"\n" +
-                "         quality=\"high\" width=\"480\" height=\"400\" align=\"middle\" allowScriptAccess=\"always\"\n" +
-                "         allowFullScreen=\"true\" mode=\"transparent\" type=\"application/x-shockwave-flash\"></embed> 789" +
-                "" +
-                "<embed src=\"movie.swf\" width=\"320\" height=\"240\" />" +
-                "123456" +
-                "<object data=\"movie.mp4\" width=\"320\" height=\"240\">\n" +
-                "                 <embed src=\"movie.swf\" width=\"320\" height=\"240\" />\n" +
-                "             </object> " +
-                "<embed src=\"http://player.youku.com/player.php/Type/Folder/Fid/28212553/Ob/1/sid/XMTczNDI3NTY2OA==/v.swf\" quality=\"high\" width=\"480\" height=\"400\" align=\"middle\" allowScriptAccess=\"always\" allowFullScreen=\"true\" mode=\"transparent\" type=\"application/x-shockwave-flash\"></embed> ";
+//        String video = "<video width=\"320\" height=\"240\" controls=\"controls\"><source src=\"movie.mp4\" type=\"video/mp4\" />\n" +
+//                "  <source src=\"movie.ogg\" type=\"video/ogg\" />\n" +
+//                "  <source src=\"movie.webm\" type=\"video/webm\" />\n" +
+//                "Your browser does not support the video tag.\n" +
+//                "</video> 123 <video width=\"320\" height=\"240\" controls=\"controls\"/> 456 " +
+//                "" +
+//                "<embed src=\"http://player.youku.com/player.php/Type/Folder/Fid/28212553/Ob/1/sid/XMTczNDI3NTY2OA==/v.swf\"\n" +
+//                "         quality=\"high\" width=\"480\" height=\"400\" align=\"middle\" allowScriptAccess=\"always\"\n" +
+//                "         allowFullScreen=\"true\" mode=\"transparent\" type=\"application/x-shockwave-flash\"></embed> 789" +
+//                "" +
+//                "<embed src=\"movie.swf\" width=\"320\" height=\"240\" />" +
+//                "123456" +
+//                "<object data=\"movie.mp4\" width=\"320\" height=\"240\">\n" +
+//                "                 <embed src=\"movie.swf\" width=\"320\" height=\"240\" />\n" +
+//                "             </object> " +
+//                "<embed src=\"http://player.youku.com/player.php/Type/Folder/Fid/28212553/Ob/1/sid/XMTczNDI3NTY2OA==/v.swf\" quality=\"high\" width=\"480\" height=\"400\" align=\"middle\" allowScriptAccess=\"always\" allowFullScreen=\"true\" mode=\"transparent\" type=\"application/x-shockwave-flash\"></embed> ";
 
         String ss = " <embed src=\"movie.swf\" width=\"320\" height=\"240\" /><embed src=\"http://player.youku.com/player.php/Type/Folder/Fid/28212553/Ob/1/sid/XMTczNDI3NTY2OA==/v.swf\" quality=\"high\" width=\"480\" height=\"400\" align=\"middle\" allowScriptAccess=\"always\" allowFullScreen=\"true\" mode=\"transparent\" type=\"application/x-shockwave-flash\"></embed> ";
         /**

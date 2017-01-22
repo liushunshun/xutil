@@ -12,7 +12,7 @@ import com.xy.refactoring.print.IPrinter;
 public class Customer {
 	
 	/**
-	 * 姓名
+	 * 姓名 
 	 */
 	private String name;
 	
@@ -53,11 +53,7 @@ public class Customer {
 	 * @author: liuss
 	 */
 	public int getFrequentRenterPoints(){
-		int frequentRenterPoints = 0;
-		for(Rental rental : rentalRecords){
-			frequentRenterPoints += rental.getMovie().getFrequentRenterPoints(rental.getDaysRented());
-		}
-		return frequentRenterPoints;
+		return rentalRecords.stream().mapToInt(rentalRecord -> rentalRecord.getMovie().getFrequentRenterPoints(rentalRecord.getDaysRented())).sum();
 	}
 	
 	/**
@@ -69,11 +65,7 @@ public class Customer {
 	 * @author: liuss
 	 */
 	public double getTotalAmount(){
-		double totalAmount = 0.0;
-		for(Rental rental : rentalRecords){
-			totalAmount += rental.getMovie().getCharge(rental.getDaysRented());
-		}
-		return totalAmount;
+		return rentalRecords.stream().mapToDouble(rental -> rental.getMovie().getCharge(rental.getDaysRented())).sum();
 	}
 	
 	/**

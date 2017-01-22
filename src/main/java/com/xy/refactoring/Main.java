@@ -28,7 +28,7 @@ import com.xy.refactoring.print.impl.TxtPrinter;
 public class Main {
 	public static void main(String[] args) {
 		//新到一个片
-		Movie movie = new Movie("功夫熊猫",new RegularPrice());
+		Movie movie = new Movie("功夫熊猫2",new RegularPrice());
 		
 		//来了一个客人
 		Customer customer = new Customer("休扬");

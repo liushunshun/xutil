@@ -2,7 +2,7 @@ package com.xy.asyc;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class AsynServiceImpl implements AsynService{
+public class AsynServiceImpl extends Asyn4jContext implements AsynService{
 
 	@Override
 	public void addJob(Object targetObject, String method, Class<?>[] paramTypes, Object[] paramsValues,
@@ -14,10 +14,14 @@ public class AsynServiceImpl implements AsynService{
 		if(targetObject instanceof Class){
 			
 		}
-		AsynWork asynWork = new DefaultAsynWork(targetObject, method,paramTypes,paramsValues,priority);
+		AsynWork asynWork = null;
 		
+		//不用回调则创建一个默认的工作任务
+		if(asynCallback == null){
+			asynWork = new DefaultAsynWork(targetObject, method,paramTypes,paramsValues,priority);
+		}
 		
-		
+		addAsynWork(asynWork);
 	}
 	
 	public static void main(String[] args) {

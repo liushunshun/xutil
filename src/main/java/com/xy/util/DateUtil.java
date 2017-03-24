@@ -736,7 +736,6 @@ public class DateUtil {
         }
         return num;
     }
-
     /**
      * 获取简单农历对象
      * @param date 日期字符串
@@ -755,7 +754,4 @@ public class DateUtil {
         return new SimpleLunarCalendar(date);
     }
 
-    public static void main(String[] args) {
-        System.out.println(DateUtil.StringToDate("20150106"));
-    }
 }

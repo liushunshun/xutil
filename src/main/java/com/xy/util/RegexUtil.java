@@ -1,5 +1,7 @@
 package com.xy.util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -139,4 +141,23 @@ public class RegexUtil {
         System.out.println("s2 : "+s2);
 
     }
+    
+
+    /*private static List<String> ignoreLoginAuthUriListRegex = new ArrayList<String>();
+    static{
+    	ignoreLoginAuthUriListRegex.add("/introduce/(app|home|recommend|communicate|invite|jipin|rpo|framework|share)(/)?$");
+    }
+    public static boolean isMatch(String url){
+    	for(String pattern : ignoreLoginAuthUriListRegex){
+    		if(Pattern.matches(pattern,url)){
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    public static void main(String[] args) {
+
+        System.out.println(isMatch("/introduc"));
+	}*/
 }

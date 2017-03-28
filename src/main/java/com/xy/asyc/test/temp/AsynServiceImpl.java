@@ -1,4 +1,4 @@
-package com.xy.asyc;
+package com.xy.asyc.test.temp;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -28,7 +28,7 @@ public class AsynServiceImpl extends Asyn4jContext implements AsynService{
 		Person person = new Person(1,"alex");
 		
 		try {
-			new AsynServiceImpl().addJob(person, "getId", new Class<?>[]{int.class,}, new Object[]{1}, null, null);
+			new AsynServiceImpl().addJob(person, "getId", new Class<?>[]{int.class,}, new Object[]{2}, null, null);
 		} catch (Asyn4jException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,6 +46,7 @@ class Person{
 		this.name = name;
 	}
 	public int getId(int id) {
+		System.out.println("Persion.getId("+id+")");
 		this.id=id+1;
 		return this.id;
 	}

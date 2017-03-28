@@ -1,4 +1,4 @@
-package com.xy.asyc;
+package com.xy.asyc.test.temp;
 
 public class Asyn4jException extends RuntimeException{
 

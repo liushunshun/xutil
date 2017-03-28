@@ -1,4 +1,4 @@
-package com.xy.asyc;
+package com.xy.asyc.test.temp;
 
 public enum JobPriority {
 	MIN(1),NORM(5),MAX(9);

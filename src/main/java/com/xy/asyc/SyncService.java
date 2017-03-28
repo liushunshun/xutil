@@ -4,6 +4,9 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.xy.util.ReflectUtil;
 
 public class SyncService {
@@ -16,6 +19,8 @@ public class SyncService {
 }
 class SyncTask implements Callable<String>{
 	
+	private static final Logger logger = LogManager.getLogger(SyncService.class);
+	
 	private Work work;
 	
 	public SyncTask(Work work){
@@ -23,7 +28,11 @@ class SyncTask implements Callable<String>{
 	}
 	@Override
 	public String call() throws Exception {
-		ReflectUtil.invoke(work.getTargetObject(), work.getMethod(), work.getParamTypes(), work.getParamsValues());
+		try{
+			ReflectUtil.invoke(work.getTargetObject(), work.getMethod(), work.getParamTypes(), work.getParamsValues());
+		}catch(Exception e){
+			logger.error("SyncTask execute reflect invoke error:",e);
+		}
 		return "SUCCESS";
 	}
 	

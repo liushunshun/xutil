@@ -754,4 +754,12 @@ public class DateUtil {
         return new SimpleLunarCalendar(date);
     }
 
+    /** 还有多少秒到夜里12点 */
+    public static int getTodayLeftSeconds() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.SECOND, 59);
+        cal.set(Calendar.MINUTE, 59);
+        return Long.valueOf(((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000)).intValue();
+    }
 }

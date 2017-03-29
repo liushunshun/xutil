@@ -18,8 +18,5 @@ public class Main {
         hanFeiZi.addObserver(observer1);
         hanFeiZi.haveBrekfast();
         hanFeiZi.haveHan();
-        new Thread(()->{
-            logger.info("线程中日志输出");
-        }).start();
     }
 }

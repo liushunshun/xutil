@@ -14,11 +14,7 @@ public class LiSi implements Observer {
     private static final Logger logger = LogManager.getLogger(LiSi.class);
     @Override
     public void update(Observable o, Object arg) {
-        logger.debug(()->"李斯发现："+getString());
+        logger.info(()->"李斯发现："+arg);
     }
 
-    public String getString(){
-        logger.info("lid asdkl;f");
-        return "lisi";
-    }
 }

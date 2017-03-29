@@ -1,15 +1,18 @@
 package com.xy.util;
 
+import static java.nio.file.StandardOpenOption.APPEND;
+import static java.nio.file.StandardOpenOption.CREATE;
+import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static java.nio.file.StandardOpenOption.*;
 
 /**
  * Created by XiuYang on 2016/11/1.
@@ -60,8 +63,22 @@ public class FileUtil {
      * @throws IOException
      */
     public static List<String> read(String filePath) throws IOException {
+        return read(Paths.get(filePath),DEFAULT_CHARSET);
+    }
+    /**
+     * 读文件，默认字符集 UTF-8
+     * @param filePath
+     * @return
+     * @throws IOException
+     * @return List<String>
+     * @exception
+     * @createTime：2017年3月28日
+     * @author: liuss
+     */
+    public static List<String> read(Path filePath) throws IOException {
         return read(filePath,DEFAULT_CHARSET);
     }
+    
 
     /**
      * 读文件
@@ -70,8 +87,8 @@ public class FileUtil {
      * @return
      * @throws IOException
      */
-    public static List<String> read(String filePath,String charset) throws IOException {
-        try(BufferedReader reader = Files.newBufferedReader(Paths.get(filePath),Charset.forName(charset))){
+    public static List<String> read(Path filePath,String charset) throws IOException {
+        try(BufferedReader reader = Files.newBufferedReader(filePath,Charset.forName(charset))){
             return reader.lines().collect(Collectors.toList());
         }
     }

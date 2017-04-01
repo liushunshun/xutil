@@ -37,13 +37,11 @@
 
 	<!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
 	<loggers>
-		<logger name="com.xy.logger.MonitorLogger" level="debug" additivity="false">
-            <appender-ref ref="debug" />
-        </logger>
 		<!--建立一个默认的root的logger -->
 		<root level="info">
 			<appender-ref ref="debug" />
 			<appender-ref ref="catalina" />
+			<appender-ref ref="console"/>
 		</root>
 	</loggers>
 </configuration>
